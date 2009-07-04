@@ -1,3 +1,4 @@
 <?php
- require_once DIREC . '/class/func.php';
+ require DIREC . '/class/func.php';
+ require DIREC . '/common/include.php';
 ?>
