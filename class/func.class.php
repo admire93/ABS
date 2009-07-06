@@ -1,17 +1,16 @@
 <?php
- function urlParse($url) 
- {
-	 $ex = explode('/',$url);
-	 
-	 if(!empty($ex)) {
-		_urlParse($ex[1],$ex[2],$ex[3]);
-	 }
-	 
-	 return $ex;
- }
- function _urlParse($controller,$method,$param)
- {
-	 return array($controller,$method,$param);
- }
+function newCode($info)
+{
+	$newCode['newInstance'] = '$inst = new ' . $info['controller'] . '();'
+	$newCode['run'] = '$inst->' . $info['method'] '(' .$info['param'] . ');';	
+	foreach($newCode as $key => $var)
+	{		
+		try {
+			eval($var);
+		} 
+		sometingError $e {
+			echo $key 'error : ' . $e; 
+		}
+	}
+}
 ?>
-

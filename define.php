@@ -1,3 +1,5 @@
 <?php
-if(!defined('DIREC')) define('DIREC','.');
+if(!defined('DIREC')) {
+	define('DIREC',dirname(__FILE__));
+}
 ?>
