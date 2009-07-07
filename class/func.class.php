@@ -1,16 +1,17 @@
 <?php
-function newCode($info)
+function newCode($controller,$method = null,$param = null)
 {
-	$newCode['newInstance'] = '$inst = new ' . $info['controller'] . '();'
-	$newCode['run'] = '$inst->' . $info['method'] '(' .$info['param'] . ');';	
-	foreach($newCode as $key => $var)
-	{		
-		try {
-			eval($var);
-		} 
-		sometingError $e {
-			echo $key 'error : ' . $e; 
-		}
+	$new = array();
+	if(empty($controller)) echo 'Doesn\' exists => ' . $controller;
+	if($method == null) $method = 'index';
+	
+	$new['newInstance'] = '$inst = new ' . $controller . '();';
+	$new['callMethod'] = '$inst->' . $method . '(' . $param . ');';
+
+	foreach($new as $key => $var)
+	{
+		eval($var);
 	}
 }
 ?>
+
