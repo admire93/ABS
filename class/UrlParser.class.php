@@ -12,11 +12,11 @@ class UrlParser
 	private function makeHandle($path,$len)
 	{
 		if($len == 4) {
-			$var['controller'] = $path[1];
+			$var['controller'] = $path[1].'Controller';
 			$var['method'] = $path[2];
 			$var['param'] = $path[3];
 		} else if($len == 3 || $len == 2) {
-			$var['controller'] = $path[1];
+			$var['controller'] = $path[1].'Controller';
 			$var['method'] = $path[2];
 		} else {
 			return false;	

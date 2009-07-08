@@ -1,9 +1,11 @@
 <?php
-class BoardController
+class BoardController extends Controller
 {
 	public function index()
 	{
-		echo '<h1>Welcome to the index page</h1>';
+		$data['title'] = 'This is index title';
+		$data['body'] = 'This is Body Message';
+		$this->load->view('board/index',$data);
 	}
 	public function edit()
 	{
@@ -11,7 +13,7 @@ class BoardController
 	public function show()
 	{
 	}
-	public function lists()
+	public function post($page = 1)
 	{
 	}
 }
