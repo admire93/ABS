@@ -6,5 +6,4 @@ $parse = new UrlParser();
 $url = $parse->urlParse($_SERVER['PATH_INFO']);
 $main = new MainController();
 $main->run($url);
-$main->ended();
 ?>
