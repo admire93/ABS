@@ -1,9 +1,12 @@
 <?php
 class Loader
 {
-	public function view($path , $data)
+	public function view($path , $data = null)
 	{
-		if(!empty($data) && is_array($data)) {
+		if(!empty($path) && (empty($data) || is_array($data))) {
+			if(empty($data)) {
+				$data = array();
+			}
 			foreach($data as $key => $var)
 			{
 				$$key = $var;
@@ -11,10 +14,12 @@ class Loader
 		} else {
 			echo 'View Error';
 		}
-		include DIREC . '/view/' . $path . '.php';
+		require_once DIREC . '/view/' . $path . '.php';
 	}
-	public function model()
+	public function model($modelName)
 	{
+		$model = $modelName . 'Model';
+		$$modelName = new $model();
 	}
 }
 ?>

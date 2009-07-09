@@ -5,7 +5,6 @@ class MainController extends Controller
 	private $urlInfo,$html;
 	public function __construct()
 	{
-		parent::__construct();
 		$this->html = new Html();
 		$this->html->_header('Hello TestPage');
 	}
@@ -16,13 +15,13 @@ class MainController extends Controller
 	public function run($url)
 	{
 		$this->urlInfo = $url;
-		if(empty($this->urlInfo['controller'])) {
+		if(empty($this->urlInfo)) {
 			$this->MainPage();
-		} else {
-			$new = newCode($this->urlInfo['controller'],$this->urlInfo['method'],$this->urlInfo['param'],$this->urlInfo['id']);
 		}
-	}
 
+		$new =
+		newCode($this->urlInfo['controller'],$this->urlInfo['method'],$this->urlInfo['param'],$this->urlInfo['id']);
+	}
 	public function MainPage()
 	{
 		$this->load->view('Main/index');

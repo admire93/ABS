@@ -1,16 +1,16 @@
 <?php
-function newCode($controller,$method = null,$param = null)
+function newCode($controller,$method = null,$param = null,$id = null)
 {
-	$new = array();
-	if(empty($controller)) echo 'Doesn\' exists => ' . $controller;
+	if(empty($controller)) {
+		echo 'Doesn\'t exists => ' . $controller;
+		exit;
+	}
 	if($method == null) $method = 'index';
-	
-	$new['newInstance'] = '$inst = new ' . $controller . '();';
-	$new['callMethod'] = '$inst->' . $method . '(' . $param . ');';
-
-	foreach($new as $key => $var)
-	{
-		eval($var);
+	try {
+		$inst = new $controller($id);
+		$inst->$method($param);
+	} catch (Exception $e) {
+		show404('Page NotFound');
 	}
 }
 ?>

@@ -10,16 +10,27 @@ class UrlParser
 		return $handle;
 	}
 	private function makeHandle($path,$len)
-	{
-		if($len == 4) {
-			$var['controller'] = $path[1].'Controller';
-			$var['method'] = $path[2];
-			$var['param'] = $path[3];
-		} else if($len == 3 || $len == 2) {
-			$var['controller'] = $path[1].'Controller';
-			$var['method'] = $path[2];
+	{	
+		if(empty($path[1])) {
+				$var['controller'] = null;
 		} else {
-			return false;	
+			$control = explode('-',$path[1]); #Hello
+			if(count($control) >= 3)
+			{
+				echo 'Error handling => ' . $path[1];
+				exit;
+			}
+			$var['id'] = $control[1];
+			if($len == 4) {	# Graceful Codes
+				$var['controller'] = $control[0] .'Controller';
+				$var['method'] = $path[2];
+				$var['param'] = $path[3];
+			} else if($len == 3 || $len == 2) {
+				$var['controller'] = $control[0] .'Controller';
+				$var['method'] = $path[2];
+			} else {
+				return false;	
+			}
 		}
 		return $var;
 	}

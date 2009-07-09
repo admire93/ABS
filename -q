@@ -1,0 +1,31 @@
+<?php
+class BoardController extends Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+	}
+	public function index()
+	{
+		$this->load->model('Board');
+	    $this->Board->setBoard('ABS');
+		$data['title'] = $this->Board->getTitle();
+		$data['list'] = $this->Board->getList();
+		#$data['title'] = 'This is index title';
+		$data['body'] = 'This is Body Message';
+		$this->load->view('board/index',$data);
+	}
+	public function edit()
+	{
+	}
+	public function show()
+	{
+	}
+	public function post($page = 1)
+	{
+		echo 'Hello Posts';
+		echo $page;
+	}
+}
+?>
+
